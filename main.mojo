@@ -156,7 +156,12 @@ fn run_mandelbrot(parallel: Bool) raises -> Float64:
 
 
 fn main() raises -> None:
+    # TODO: benchmark naive implementation
     # show_plot(compute_mandelbrot())
     var vectorized = run_mandelbrot(parallel=False)
-    print("Vectorized:", vectorized, unit)
+    var parallelized = run_mandelbrot(parallel=True)
+    print("Number of physical cores:", num_physical_cores())
+    print("Vectorized:", vectorized, "ms")
+    print("Parallelized:", parallelized, "ms")
+    print("Parallel speedup:", vectorized / parallelized)
     return None
